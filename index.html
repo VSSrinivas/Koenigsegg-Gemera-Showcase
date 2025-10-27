@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koenigsegg Gemera - The World's First Mega-GT</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#C5A572',secondary:'#8B7355'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+:root {
+--dark-bg: #000000;
+--dark-text: #FFFFFF;
+--dark-accent: #C5A572;
+--dark-secondary: #8B7355;
+--light-bg: #FFFFFF;
+--light-text: #333333;
+--light-accent: #C5A572;
+--light-secondary: #D4C4A8;
+}
+body {
+font-family: 'Inter', sans-serif;
+transition: background-color 0.3s ease, color 0.3s ease;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: 'Montserrat', sans-serif;
+}
+.dark {
+background-color: var(--dark-bg);
+color: var(--dark-text);
+}
+.light {
+background-color: var(--light-bg);
+color: var(--light-text);
+}
+.dark .accent-color {
+color: var(--dark-accent);
+}
+.light .accent-color {
+color: var(--light-accent);
+}
+.dark .accent-bg {
+background-color: var(--dark-accent);
+}
+.light .accent-bg {
+background-color: var(--light-accent);
+}
+.dark .secondary-color {
+color: var(--dark-secondary);
+}
+.light .secondary-color {
+color: var(--light-secondary);
+}
+.dark .secondary-bg {
+background-color: var(--dark-secondary);
+}
+.light .secondary-bg {
+background-color: var(--light-secondary);
+}
+.dark .border-accent {
+border-color: var(--dark-accent);
+}
+.light .border-accent {
+border-color: var(--light-accent);
+}
+.dark .card {
+background-color: #111111;
+}
+.light .card {
+background-color: #F8F8F8;
+}
+.hero-section {
+height: 100vh;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+position: relative;
+}
+.hero-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%);
+}
+.light .hero-overlay {
+background: linear-gradient(to right, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
+}
+.spec-card {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.spec-card:hover {
+transform: translateY(-5px);
+}
+.dark .spec-card:hover {
+box-shadow: 0 10px 20px rgba(197, 165, 114, 0.2);
+}
+.light .spec-card:hover {
+box-shadow: 0 10px 20px rgba(197, 165, 114, 0.1);
+}
+.gallery-item {
+transition: transform 0.3s ease;
+}
+.gallery-item:hover {
+transform: scale(1.02);
+}
+.theme-toggle {
+cursor: pointer;
+transition: transform 0.3s ease;
+}
+.theme-toggle:hover {
+transform: rotate(30deg);
+}
+.progress-bar {
+height: 6px;
+border-radius: 3px;
+overflow: hidden;
+background-color: #333;
+}
+.light .progress-bar {
+background-color: #e5e5e5;
+}
+.progress-fill {
+height: 100%;
+border-radius: 3px;
+transition: width 1s ease-in-out;
+}
+.custom-checkbox {
+appearance: none;
+-webkit-appearance: none;
+width: 20px;
+height: 20px;
+border-radius: 4px;
+cursor: pointer;
+display: inline-block;
+position: relative;
+}
+.dark .custom-checkbox {
+border: 2px solid var(--dark-accent);
+background-color: transparent;
+}
+.light .custom-checkbox {
+border: 2px solid var(--light-accent);
+background-color: transparent;
+}
+.custom-checkbox:checked {
+background-color: var(--dark-accent);
+}
+.light .custom-checkbox:checked {
+background-color: var(--light-accent);
+}
+.custom-checkbox:checked::after {
+content: '✓';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: white;
+font-size: 12px;
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 50px;
+height: 24px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.switch-slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #333;
+transition: .4s;
+border-radius: 34px;
+}
+.light .switch-slider {
+background-color: #ccc;
+}
+.switch-slider:before {
+position: absolute;
+content: "";
+height: 16px;
+width: 16px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .switch-slider {
+background-color: var(--dark-accent);
+}
+.light input:checked + .switch-slider {
+background-color: var(--light-accent);
+}
+input:checked + .switch-slider:before {
+transform: translateX(26px);
+}
+.scroll-indicator {
+animation: bounce 2s infinite;
+}
+@keyframes bounce {
+0%, 20%, 50%, 80%, 100% {
+transform: translateY(0);
+}
+40% {
+transform: translateY(-10px);
+}
+60% {
+transform: translateY(-5px);
+}
+}
+.fade-in {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.gallery-container {
+overflow-x: auto;
+scrollbar-width: thin;
+scrollbar-color: var(--dark-accent) transparent;
+}
+.gallery-container::-webkit-scrollbar {
+height: 6px;
+}
+.gallery-container::-webkit-scrollbar-track {
+background: transparent;
+}
+.gallery-container::-webkit-scrollbar-thumb {
+background-color: var(--dark-accent);
+border-radius: 20px;
+}
+.light .gallery-container::-webkit-scrollbar-thumb {
+background-color: var(--light-accent);
+}
+input[type="range"] {
+-webkit-appearance: none;
+width: 100%;
+height: 6px;
+border-radius: 3px;
+outline: none;
+}
+.dark input[type="range"] {
+background: #333;
+}
+.light input[type="range"] {
+background: #e5e5e5;
+}
+input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 16px;
+height: 16px;
+border-radius: 50%;
+cursor: pointer;
+}
+.dark input[type="range"]::-webkit-slider-thumb {
+background: var(--dark-accent);
+}
+.light input[type="range"]::-webkit-slider-thumb {
+background: var(--light-accent);
+}
+input[type="range"]::-moz-range-thumb {
+width: 16px;
+height: 16px;
+border-radius: 50%;
+cursor: pointer;
+border: none;
+}
+.dark input[type="range"]::-moz-range-thumb {
+background: var(--dark-accent);
+}
+.light input[type="range"]::-moz-range-thumb {
+background: var(--light-accent);
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input[type="number"] {
+-moz-appearance: textfield;
+}
+</style>
+</head>
+<body class="dark">
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+<nav class="flex items-center justify-between px-6 md:px-12 py-4">
+<div class="flex items-center">
+<a href="#" class="text-3xl font-['Pacifico'] accent-color">Koenigsegg</a>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a href="#overview" class="hover:accent-color transition-colors">Overview</a>
+<a href="#specifications" class="hover:accent-color transition-colors">Specifications</a>
+<a href="#gallery" class="hover:accent-color transition-colors">Gallery</a>
+<a href="#contact" class="hover:accent-color transition-colors">Contact</a>
+</div>
+<div class="flex items-center space-x-4">
+<div class="theme-toggle w-8 h-8 flex items-center justify-center" id="themeToggle">
+<i class="ri-sun-line ri-lg hidden light-icon"></i>
+<i class="ri-moon-line ri-lg dark-icon"></i>
+</div>
+<a href="https://www.koenigsegg.com" target="_blank" class="hidden md:block px-6 py-2 accent-bg text-white rounded-button !rounded-button whitespace-nowrap">
+Official Site
+</a>
+<div class="md:hidden w-8 h-8 flex items-center justify-center" id="mobileMenuToggle">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</div>
+</nav>
+<div class="mobile-menu hidden px-6 py-4 absolute w-full" id="mobileMenu">
+<div class="flex flex-col space-y-4 card p-4 rounded">
+<a href="#overview" class="hover:accent-color transition-colors">Overview</a>
+<a href="#specifications" class="hover:accent-color transition-colors">Specifications</a>
+<a href="#gallery" class="hover:accent-color transition-colors">Gallery</a>
+<a href="#contact" class="hover:accent-color transition-colors">Contact</a>
+<a href="https://www.koenigsegg.com" target="_blank" class="px-6 py-2 accent-bg text-white rounded-button !rounded-button whitespace-nowrap">
+Official Site
+</a>
+</div>
+</div>
+</header>
+<main>
+<section class="hero-section relative" style="background-image: url('https://readdy.ai/api/search-image?query=Koenigsegg%2520Gemera%2520luxury%2520hypercar%2520on%2520a%2520dramatic%2520background%2520with%2520smooth%2520gradient%2520from%2520dark%2520to%2520light%2520on%2520left%2520side%2520to%2520allow%2520text%2520overlay%252C%2520professional%2520automotive%2520photography%252C%2520studio%2520lighting%252C%2520cinematic%252C%2520high%2520end%2520car%2520advertisement%2520style%252C%2520dramatic%2520lighting%252C%2520high%2520contrast&width=1920&height=1080&seq=hero1&orientation=landscape')">
+<div class="hero-overlay"></div>
+<div class="container mx-auto px-6 md:px-12 h-full flex flex-col justify-center relative z-10">
+<div class="w-full max-w-2xl fade-in">
+<h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">KOENIGSEGG GEMERA</h1>
+<h2 class="text-xl md:text-2xl accent-color mb-6">The World's First Mega-GT</h2>
+<p class="text-lg md:text-xl mb-8 max-w-xl">Extreme performance meets spacious luxury in a revolutionary four-seat hypercar that defies all conventions.</p>
+<div class="flex flex-wrap gap-4">
+<button class="px-8 py-3 accent-bg text-white font-medium rounded-button !rounded-button whitespace-nowrap">
+Discover More
+</button>
+<button class="px-8 py-3 border border-accent text-white font-medium rounded-button !rounded-button whitespace-nowrap">
+Watch Video
+</button>
+</div>
+</div>
+<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
+<i class="ri-arrow-down-line ri-2x"></i>
+</div>
+</div>
+</section>
+<section id="overview" class="py-20 px-6 md:px-12">
+<div class="container mx-auto">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">REVOLUTIONARY DESIGN</h2>
+<div class="w-24 h-1 accent-bg mx-auto mb-6"></div>
+<p class="max-w-3xl mx-auto text-lg">The Gemera is Koenigsegg's first four-seater, designed to carry driver and passengers alike in comfort and style without compromising the extreme performance that defines the brand.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+<div class="fade-in">
+<h3 class="text-2xl md:text-3xl font-bold mb-4">MEGA-GT EXPERIENCE</h3>
+<div class="w-16 h-1 accent-bg mb-6"></div>
+<p class="mb-6">The Gemera combines extreme megacar attributes with the ability to comfortably seat four large adults with their luggage. Despite its spacious interior, it delivers mind-blowing performance, innovative technology, and a driving experience unlike any other four-seater on the planet.</p>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-6 h-6 flex items-center justify-center mr-3 mt-1">
+<i class="ri-check-line ri-lg accent-color"></i>
+</div>
+<span>Four full-size seats with ample space</span>
+</li>
+<li class="flex items-start">
+<div class="w-6 h-6 flex items-center justify-center mr-3 mt-1">
+<i class="ri-check-line ri-lg accent-color"></i>
+</div>
+<span>Dihedral synchro-helix doors for easy access</span>
+</li>
+<li class="flex items-start">
+<div class="w-6 h-6 flex items-center justify-center mr-3 mt-1">
+<i class="ri-check-line ri-lg accent-color"></i>
+</div>
+<span>Three electric motors combined with TFG engine</span>
+</li>
+<li class="flex items-start">
+<div class="w-6 h-6 flex items-center justify-center mr-3 mt-1">
+<i class="ri-check-line ri-lg accent-color"></i>
+</div>
+<span>1,700+ horsepower and 3500 Nm of torque</span>
+</li>
+</ul>
+</div>
+<div class="rounded-lg overflow-hidden fade-in">
+<img src="https://readdy.ai/api/search-image?query=Koenigsegg%2520Gemera%2520interior%2520showing%2520four%2520seats%252C%2520luxury%2520materials%252C%2520high-tech%2520dashboard%252C%2520studio%2520lighting%252C%2520professional%2520automotive%2520photography%252C%2520detailed%2520interior%2520shot%2520showing%2520spaciousness%2520and%2520luxury%2520features%252C%2520clean%2520background%252C%2520high%2520end%2520finish&width=800&height=600&seq=interior1&orientation=landscape" alt="Koenigsegg Gemera Interior" class="w-full h-full object-cover object-top">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="order-2 md:order-1 rounded-lg overflow-hidden fade-in">
+<img src="https://readdy.ai/api/search-image?query=Koenigsegg%2520Gemera%2520engine%2520bay%2520showing%2520the%2520innovative%2520TFG%2520engine%2520and%2520hybrid%2520system%252C%2520highly%2520detailed%2520engineering%2520shot%252C%2520professional%2520automotive%2520photography%252C%2520studio%2520lighting%252C%2520clean%2520background%252C%2520technical%2520details%2520visible%252C%2520precision%2520engineering%2520showcase&width=800&height=600&seq=engine1&orientation=landscape" alt="Koenigsegg Gemera Engine" class="w-full h-full object-cover object-top">
+</div>
+<div class="order-1 md:order-2 fade-in">
+<h3 class="text-2xl md:text-3xl font-bold mb-4">REVOLUTIONARY POWERTRAIN</h3>
+<div class="w-16 h-1 accent-bg mb-6"></div>
+<p class="mb-6">The Gemera's powertrain combines Koenigsegg's innovative 2.0-liter three-cylinder twin-turbo Freevalve engine (the Tiny Friendly Giant, or TFG) with three electric motors. This hybrid setup delivers an astonishing 1,700+ horsepower and 3,500 Nm of torque, allowing for a 0-100 km/h time of just 1.9 seconds.</p>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-2">
+<span>Combustion Engine</span>
+<span class="accent-color">600 HP</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill accent-bg" style="width: 35%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span>Electric Motors</span>
+<span class="accent-color">1,100 HP</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill accent-bg" style="width: 65%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span>Combined Output</span>
+<span class="accent-color">1,700+ HP</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill accent-bg" style="width: 100%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="specifications" class="py-20 px-6 md:px-12 bg-gray-50 dark:bg-gray-900">
+<div class="container mx-auto">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">TECHNICAL SPECIFICATIONS</h2>
+<div class="w-24 h-1 accent-bg mx-auto mb-6"></div>
+<p class="max-w-3xl mx-auto text-lg">Every aspect of the Gemera has been meticulously engineered to deliver uncompromising performance while maintaining luxury and comfort.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="card p-6 rounded-lg shadow-lg fade-in">
+<div class="w-12 h-12 flex items-center justify-center accent-bg rounded-full mb-6">
+<i class="ri-speed-up-line ri-lg text-white"></i>
+</div>
+<h3 class="text-xl font-bold mb-4">PERFORMANCE</h3>
+<ul class="space-y-4">
+<li class="flex justify-between">
+<span>Top Speed</span>
+<span class="font-semibold">400+ km/h</span>
+</li>
+<li class="flex justify-between">
+<span>0-100 km/h</span>
+<span class="font-semibold">1.9 seconds</span>
+</li>
+<li class="flex justify-between">
+<span>0-400 km/h</span>
+<span class="font-semibold">< 20 seconds</span>
+</li>
+<li class="flex justify-between">
+<span>Electric Range</span>
+<span class="font-semibold">50 km</span>
+</li>
+<li class="flex justify-between">
+<span>Total Range</span>
+<span class="font-semibold">1,000 km</span>
+</li>
+</ul>
+</div>
+<div class="card p-6 rounded-lg shadow-lg fade-in">
+<div class="w-12 h-12 flex items-center justify-center accent-bg rounded-full mb-6">
+<i class="ri-engine-line ri-lg text-white"></i>
+</div>
+<h3 class="text-xl font-bold mb-4">POWERTRAIN</h3>
+<ul class="space-y-4">
+<li class="flex justify-between">
+<span>Engine</span>
+<span class="font-semibold">2.0L TFG</span>
+</li>
+<li class="flex justify-between">
+<span>Configuration</span>
+<span class="font-semibold">3-cylinder Twin-Turbo</span>
+</li>
+<li class="flex justify-between">
+<span>Engine Power</span>
+<span class="font-semibold">600 HP</span>
+</li>
+<li class="flex justify-between">
+<span>Electric Motors</span>
+<span class="font-semibold">3 (1,100 HP)</span>
+</li>
+<li class="flex justify-between">
+<span>Transmission</span>
+<span class="font-semibold">Koenigsegg Direct Drive</span>
+</li>
+</ul>
+</div>
+<div class="card p-6 rounded-lg shadow-lg fade-in">
+<div class="w-12 h-12 flex items-center justify-center accent-bg rounded-full mb-6">
+<i class="ri-car-line ri-lg text-white"></i>
+</div>
+<h3 class="text-xl font-bold mb-4">DIMENSIONS</h3>
+<ul class="space-y-4">
+<li class="flex justify-between">
+<span>Length</span>
+<span class="font-semibold">4,975 mm</span>
+</li>
+<li class="flex justify-between">
+<span>Width</span>
+<span class="font-semibold">1,988 mm</span>
+</li>
+<li class="flex justify-between">
+<span>Height</span>
+<span class="font-semibold">1,295 mm</span>
+</li>
+<li class="flex justify-between">
+<span>Wheelbase</span>
+<span class="font-semibold">3,000 mm</span>
+</li>
+<li class="flex justify-between">
+<span>Dry Weight</span>
+<span class="font-semibold">1,850 kg</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="card p-6 rounded-lg shadow-lg fade-in">
+<h3 class="text-xl font-bold mb-6">INNOVATIVE FEATURES</h3>
+<div class="space-y-4">
+<div class="flex items-start">
+<input type="checkbox" checked class="custom-checkbox mt-1 mr-3">
+<div>
+<h4 class="font-semibold">Freevalve Technology</h4>
+<p class="text-sm mt-1">Camshaft-free valve actuation allowing independent control of each intake and exhaust valve for optimized performance and efficiency.</p>
+</div>
+</div>
+<div class="flex items-start">
+<input type="checkbox" checked class="custom-checkbox mt-1 mr-3">
+<div>
+<h4 class="font-semibold">Dihedral Synchro-Helix Doors</h4>
+<p class="text-sm mt-1">Revolutionary door mechanism that rotates and extends outward and upward simultaneously, providing easy access to both front and rear seats.</p>
+</div>
+</div>
+<div class="flex items-start">
+<input type="checkbox" checked class="custom-checkbox mt-1 mr-3">
+<div>
+<h4 class="font-semibold">Koenigsegg Direct Drive (KDD)</h4>
+<p class="text-sm mt-1">Single-gear direct drive transmission system eliminating the need for a traditional gearbox, reducing weight and improving efficiency.</p>
+</div>
+</div>
+<div class="flex items-start">
+<input type="checkbox" checked class="custom-checkbox mt-1 mr-3">
+<div>
+<h4 class="font-semibold">All-Wheel Drive & Steering</h4>
+<p class="text-sm mt-1">All-wheel drive with torque vectoring and all-wheel steering for unparalleled handling and stability at all speeds.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="card p-6 rounded-lg shadow-lg fade-in">
+<h3 class="text-xl font-bold mb-6">LUXURY AMENITIES</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center mr-3">
+<i class="ri-wifi-line ri-lg accent-color"></i>
+</div>
+<span>Onboard Wi-Fi</span>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center mr-3">
+<i class="ri-cup-line ri-lg accent-color"></i>
+</div>
+<span>Heated/Cooled Cupholders</span>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center mr-3">
+<i class="ri-smartphone-line ri-lg accent-color"></i>
+</div>
+<span>Wireless Charging</span>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center mr-3">
+<i class="ri-speaker-line ri-lg accent-color"></i>
+</div>
+<span>Premium Sound System</span>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center mr-3">
+<i class="ri-temperature-line ri-lg accent-color"></i>
+</div>
+<span>4-Zone Climate Control</span>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center mr-3">
+<i class="ri-luggage-cart-line ri-lg accent-color"></i>
+</div>
+<span>200L Luggage Space</span>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center mr-3">
+<i class="ri-computer-line ri-lg accent-color"></i>
+</div>
+<span>Digital Displays</span>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center mr-3">
+<i class="ri-camera-line ri-lg accent-color"></i>
+</div>
+<span>360° Camera System</span>
+</div>
+</div>
+<div class="mt-8">
+<h4 class="font-semibold mb-2">Interior Ambient Lighting</h4>
+<div class="flex items-center space-x-4">
+<input type="range" min="0" max="100" value="70" class="flex-grow" id="lightingRange">
+<span id="lightingValue">70%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="gallery" class="py-20 px-6 md:px-12">
+<div class="container mx-auto">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">KOENIGSEGG COLLECTION</h2>
+<div class="w-24 h-1 accent-bg mx-auto mb-6"></div>
+<p class="max-w-3xl mx-auto text-lg">Explore the extraordinary lineup of Koenigsegg hypercars, each representing the pinnacle of automotive engineering and design.</p>
+</div>
+<div class="gallery-container pb-4 fade-in">
+<div class="flex space-x-6">
+<div class="gallery-item min-w-[300px] md:min-w-[400px] rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=Koenigsegg%2520Jesko%2520hypercar%2520in%2520studio%2520setting%252C%2520professional%2520automotive%2520photography%252C%2520dramatic%2520lighting%252C%2520clean%2520background%252C%2520side%2520profile%2520view%252C%2520high%2520end%2520finish%252C%2520detailed%2520shot%2520showing%2520aerodynamic%2520features%252C%2520high%2520contrast&width=800&height=500&seq=jesko1&orientation=landscape" alt="Koenigsegg Jesko" class="w-full h-64 object-cover object-top">
+<div class="p-4">
+<h3 class="text-xl font-bold mb-2">Koenigsegg Jesko</h3>
+<p class="mb-4">Named after Jesko von Koenigsegg, father of the company's founder, this hypercar is designed to break the 300 mph barrier.</p>
+<div class="flex justify-between">
+<span class="accent-color font-semibold">1,600+ HP</span>
+<span>Top Speed: 330+ mph</span>
+</div>
+</div>
+</div>
+<div class="gallery-item min-w-[300px] md:min-w-[400px] rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=Koenigsegg%2520Regera%2520hypercar%2520in%2520studio%2520setting%252C%2520professional%2520automotive%2520photography%252C%2520dramatic%2520lighting%252C%2520clean%2520background%252C%2520side%2520profile%2520view%252C%2520high%2520end%2520finish%252C%2520detailed%2520shot%2520showing%2520luxury%2520features%252C%2520high%2520contrast&width=800&height=500&seq=regera1&orientation=landscape" alt="Koenigsegg Regera" class="w-full h-64 object-cover object-top"><div class="p-4">
+<h3 class="text-xl font-bold mb-2">Koenigsegg Regera</h3>
+<p class="mb-4">The Regera, meaning "to reign" in Swedish, combines a twin-turbo V8 with three electric motors for extraordinary performance.</p>
+<div class="flex justify-between">
+<span class="accent-color font-semibold">1,500+ HP</span>
+<span>0-400-0 km/h: 33.29s</span>
+</div>
+</div>
+</div>
+<div class="gallery-item min-w-[300px] md:min-w-[400px] rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=Koenigsegg%2520Agera%2520RS%2520hypercar%2520in%2520studio%2520setting%252C%2520professional%2520automotive%2520photography%252C%2520dramatic%2520lighting%252C%2520clean%2520background%252C%2520side%2520profile%2520view%252C%2520high%2520end%2520finish%252C%2520detailed%2520shot%2520showing%2520performance%2520features%252C%2520high%2520contrast&width=800&height=500&seq=agera1&orientation=landscape" alt="Koenigsegg Agera RS" class="w-full h-64 object-cover object-top">
+<div class="p-4">
+<h3 class="text-xl font-bold mb-2">Koenigsegg Agera RS</h3>
+<p class="mb-4">The Agera RS held multiple world records, including the fastest production car with a top speed of 277.9 mph.</p>
+<div class="flex justify-between">
+<span class="accent-color font-semibold">1,160 HP</span>
+<span>0-300 km/h: 12.3s</span>
+</div>
+</div>
+</div>
+<div class="gallery-item min-w-[300px] md:min-w-[400px] rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=Koenigsegg%2520CCX%2520hypercar%2520in%2520studio%2520setting%252C%2520professional%2520automotive%2520photography%252C%2520dramatic%2520lighting%252C%2520clean%2520background%252C%2520side%2520profile%2520view%252C%2520high%2520end%2520finish%252C%2520detailed%2520shot%2520showing%2520classic%2520design%2520features%252C%2520high%2520contrast&width=800&height=500&seq=ccx1&orientation=landscape" alt="Koenigsegg CCX" class="w-full h-64 object-cover object-top">
+<div class="p-4">
+<h3 class="text-xl font-bold mb-2">Koenigsegg CCX</h3>
+<p class="mb-4">The CCX was designed to meet worldwide safety and environmental regulations, particularly for the United States market.</p>
+<div class="flex justify-between">
+<span class="accent-color font-semibold">806 HP</span>
+<span>Top Speed: 245+ mph</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 px-6 md:px-12 bg-gray-50 dark:bg-gray-900">
+<div class="container mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">EXPERIENCE THE GEMERA</h2>
+<div class="w-16 h-1 accent-bg mb-6"></div>
+<p class="mb-8">The Gemera is not just a car; it's a statement of what's possible when conventional thinking is abandoned. With its revolutionary design, groundbreaking technology, and uncompromising performance, the Gemera represents the future of automotive excellence.</p>
+<div class="space-y-6">
+<div class="flex items-center">
+<label class="custom-switch mr-4">
+<input type="checkbox" checked>
+<span class="switch-slider"></span>
+</label>
+<span>Limited Production of 300 Units</span>
+</div>
+<div class="flex items-center">
+<label class="custom-switch mr-4">
+<input type="checkbox" checked>
+<span class="switch-slider"></span>
+</label>
+<span>Fully Customizable Configuration</span>
+</div>
+<div class="flex items-center">
+<label class="custom-switch mr-4">
+<input type="checkbox" checked>
+<span class="switch-slider"></span>
+</label>
+<span>Global Service Network</span>
+</div>
+</div>
+<div class="mt-8">
+<a href="https://www.koenigsegg.com" target="_blank" class="inline-block px-8 py-3 accent-bg text-white font-medium rounded-button !rounded-button whitespace-nowrap">
+Visit Official Koenigsegg Site
+</a>
+</div>
+</div>
+<div class="rounded-lg overflow-hidden fade-in">
+<img src="https://readdy.ai/api/search-image?query=Koenigsegg%2520Gemera%2520on%2520a%2520scenic%2520mountain%2520road%252C%2520dynamic%2520action%2520shot%252C%2520professional%2520automotive%2520photography%252C%2520dramatic%2520lighting%252C%2520beautiful%2520landscape%2520background%252C%2520motion%2520blur%2520to%2520convey%2520speed%252C%2520high%2520contrast%252C%2520cinematic%2520quality&width=800&height=600&seq=action1&orientation=landscape" alt="Koenigsegg Gemera on the road" class="w-full h-full object-cover object-top">
+</div>
+</div>
+</div>
+</section>
+<section id="contact" class="py-20 px-6 md:px-12">
+<div class="container mx-auto">
+<div class="max-w-4xl mx-auto card p-8 rounded-lg shadow-lg fade-in">
+<div class="text-center mb-10">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">STAY UPDATED</h2>
+<div class="w-24 h-1 accent-bg mx-auto mb-6"></div>
+<p>Subscribe to receive the latest news and updates about the Koenigsegg Gemera and other models.</p>
+</div>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label for="firstName" class="block mb-2 font-medium">First Name</label>
+<input type="text" id="firstName" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary">
+</div>
+<div>
+<label for="lastName" class="block mb-2 font-medium">Last Name</label>
+<input type="text" id="lastName" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary">
+</div>
+</div>
+<div>
+<label for="email" class="block mb-2 font-medium">Email Address</label>
+<input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-primary">
+</div>
+<div>
+<label class="block mb-2 font-medium">Interests</label>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="flex items-center">
+<input type="checkbox" class="custom-checkbox mr-3">
+<span>Gemera</span>
+</div>
+<div class="flex items-center">
+<input type="checkbox" class="custom-checkbox mr-3">
+<span>Jesko</span>
+</div>
+<div class="flex items-center">
+<input type="checkbox" class="custom-checkbox mr-3">
+<span>Regera</span>
+</div>
+<div class="flex items-center">
+<input type="checkbox" class="custom-checkbox mr-3">
+<span>Future Models</span>
+</div>
+<div class="flex items-center">
+<input type="checkbox" class="custom-checkbox mr-3">
+<span>Events</span>
+</div>
+<div class="flex items-center">
+<input type="checkbox" class="custom-checkbox mr-3">
+<span>Technology</span>
+</div>
+</div>
+</div>
+<div class="flex items-center">
+<input type="checkbox" class="custom-checkbox mr-3">
+<span>I agree to receive emails from Koenigsegg about products, news, and events.</span>
+</div>
+<div class="text-center">
+<button type="submit" class="px-8 py-3 accent-bg text-white font-medium rounded-button !rounded-button whitespace-nowrap">
+Subscribe Now
+</button>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<footer class="py-12 px-6 md:px-12 bg-gray-100 dark:bg-gray-900">
+<div class="container mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<a href="#" class="text-3xl font-['Pacifico'] accent-color mb-6 inline-block">Koenigsegg</a>
+<p class="mb-6">Pushing the boundaries of automotive engineering since 1994. Creating the world's most exclusive hypercars.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full border border-accent">
+<i class="ri-facebook-fill ri-lg accent-color"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full border border-accent">
+<i class="ri-instagram-fill ri-lg accent-color"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full border border-accent">
+<i class="ri-twitter-x-fill ri-lg accent-color"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full border border-accent">
+<i class="ri-youtube-fill ri-lg accent-color"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">Quick Links</h4>
+<ul class="space-y-3">
+<li><a href="#" class="hover:accent-color transition-colors">Home</a></li>
+<li><a href="#overview" class="hover:accent-color transition-colors">Overview</a></li>
+<li><a href="#specifications" class="hover:accent-color transition-colors">Specifications</a></li>
+<li><a href="#gallery" class="hover:accent-color transition-colors">Gallery</a></li>
+<li><a href="#contact" class="hover:accent-color transition-colors">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">Models</h4>
+<ul class="space-y-3">
+<li><a href="#" class="hover:accent-color transition-colors">Gemera</a></li>
+<li><a href="#" class="hover:accent-color transition-colors">Jesko</a></li>
+<li><a href="#" class="hover:accent-color transition-colors">Jesko Absolut</a></li>
+<li><a href="#" class="hover:accent-color transition-colors">Regera</a></li>
+<li><a href="#" class="hover:accent-color transition-colors">Legacy Models</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">Contact</h4>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-6 h-6 flex items-center justify-center mr-3 mt-1">
+<i class="ri-map-pin-line ri-lg accent-color"></i>
+</div>
+<span>Koenigsegg Automotive AB<br>Valhall Park, 262 74 Ängelholm, Sweden</span>
+</li>
+<li class="flex items-start">
+<div class="w-6 h-6 flex items-center justify-center mr-3 mt-1">
+<i class="ri-phone-line ri-lg accent-color"></i>
+</div>
+<span>+46 431 45 44 60</span>
+</li>
+<li class="flex items-start">
+<div class="w-6 h-6 flex items-center justify-center mr-3 mt-1">
+<i class="ri-mail-line ri-lg accent-color"></i>
+</div>
+<span>info@koenigsegg.com</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="mb-4 md:mb-0">&copy; 2025 Koenigsegg Automotive AB. All rights reserved.</p>
+<div class="flex space-x-6">
+<a href="#" class="hover:accent-color transition-colors">Privacy Policy</a>
+<a href="#" class="hover:accent-color transition-colors">Terms of Service</a>
+<a href="#" class="hover:accent-color transition-colors">Cookie Policy</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script id="themeToggleScript">
+document.addEventListener('DOMContentLoaded', function() {
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const lightIcon = document.querySelector('.light-icon');
+const darkIcon = document.querySelector('.dark-icon');
+themeToggle.addEventListener('click', function() {
+body.classList.toggle('light');
+body.classList.toggle('dark');
+lightIcon.classList.toggle('hidden');
+darkIcon.classList.toggle('hidden');
+});
+});
+</script>
+<script id="mobileMenuScript">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileMenuToggle.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+});
+// Close mobile menu when clicking on a link
+const mobileLinks = mobileMenu.querySelectorAll('a');
+mobileLinks.forEach(link => {
+link.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+});
+});
+});
+</script>
+<script id="scrollEffectsScript">
+document.addEventListener('DOMContentLoaded', function() {
+const fadeElements = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+}
+});
+}, {
+threshold: 0.1
+});
+fadeElements.forEach(element => {
+observer.observe(element);
+});
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+<script id="rangeSliderScript">
+document.addEventListener('DOMContentLoaded', function() {
+const lightingRange = document.getElementById('lightingRange');
+const lightingValue = document.getElementById('lightingValue');
+if (lightingRange && lightingValue) {
+lightingRange.addEventListener('input', function() {
+lightingValue.textContent = this.value + '%';
+});
+}
+});
+</script>
+<script id="headerScrollScript">
+document.addEventListener('DOMContentLoaded', function() {
+const header = document.querySelector('header');
+window.addEventListener('scroll', function() {
+if (window.scrollY > 50) {
+header.classList.add('bg-white', 'dark:bg-gray-900', 'shadow-md');
+} else {
+header.classList.remove('bg-white', 'dark:bg-gray-900', 'shadow-md');
+}
+});
+});
+</script>
+</body>
+</html>
